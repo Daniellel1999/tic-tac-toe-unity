@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Tic-Tac-Toe (Unity)
 
 This repository contains a simple Tic-Tac-Toe game built with Unity and C#.
