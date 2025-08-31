@@ -12,19 +12,26 @@ public class GameController : MonoBehaviour
     public GameObject[] turnIcons; //displays whos turn it is
     public Sprite[] playIcons; //0 -> x's icon, 1 -> 0's icon
     public Button[] tictactoeSpaces; //playable space for our game
-    public Button []  
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        GameSetup();
     }
 
     void GameSetup()
     {
         whoturn = 0;
         turnCount = 0;
+        turnIcons[0].SetActive(true);
+        turnIcons[1].SetActive(false);
+        for (int i = 0; i < tictactoeSpaces.Length; i++)
+        {
+            tictactoeSpaces[i].interactable = true;
+            tictactoeSpaces[i].GetComponent<Image>().sprite = null;
+        }
     }
 
     // Update is called once per frame
