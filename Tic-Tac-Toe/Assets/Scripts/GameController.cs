@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     public GameObject[] turnIcons; //displays whos turn it is
     public Sprite[] playIcons; //0 -> x's icon, 1 -> 0's icon
     public Button[] tictactoeSpaces; //playable space for our game
-    
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,5 +38,25 @@ public class GameController : MonoBehaviour
     void Update()
     {
 
+
     }
+    public void TicTacToeButton(int whichNumber)
+    {
+        tictactoeSpaces[whichNumber].image.sprite = playIcons[whoturn];
+        tictactoeSpaces[whichNumber].interactable = false;
+
+        if (whoturn == 0)
+        {
+            whoturn = 1;
+            turnIcons[0].SetActive(false);
+            turnIcons[1].SetActive(true);
+        }
+        else
+        {
+            whoturn = 0;
+            turnIcons[0].SetActive(true);
+            turnIcons[1].SetActive(false);
+        }
+    }        
+    
 }
