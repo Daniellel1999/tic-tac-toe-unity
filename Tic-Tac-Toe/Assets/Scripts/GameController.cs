@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     public GameObject[] turnIcons; //displays whos turn it is
     public Sprite[] playIcons; //0 -> x's icon, 1 -> 0's icon
     public Button[] tictactoeSpaces; //playable space for our game
+    public int[] markedSpaces; //counts the number of spaces marked
+
 
 
 
@@ -32,6 +34,10 @@ public class GameController : MonoBehaviour
             tictactoeSpaces[i].interactable = true;
             tictactoeSpaces[i].GetComponent<Image>().sprite = null;
         }
+        for (int i = 0; i < markedSpaces.Length; i++)
+        {
+            markedSpaces[i] = -1;
+        }
     }
 
     // Update is called once per frame
@@ -45,6 +51,9 @@ public class GameController : MonoBehaviour
         tictactoeSpaces[whichNumber].image.sprite = playIcons[whoturn];
         tictactoeSpaces[whichNumber].interactable = false;
 
+        markedSpaces[whichNumber] = whoturn;
+        turnCount++;
+
         if (whoturn == 0)
         {
             whoturn = 1;
@@ -57,6 +66,7 @@ public class GameController : MonoBehaviour
             turnIcons[0].SetActive(true);
             turnIcons[1].SetActive(false);
         }
+
     }        
     
 }
