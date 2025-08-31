@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
     public Sprite[] playIcons; //0 -> x's icon, 1 -> 0's icon
     public Button[] tictactoeSpaces; //playable space for our game
     public int[] markedSpaces; //counts the number of spaces marked
+    public Text winText; //text to display who won
+    public GameObject[] winLine; //line to display when someone wins
 
 
 
@@ -84,17 +86,29 @@ public class GameController : MonoBehaviour
         var solutions = new int[] { s1, s2, s3, s4, s5, s6, s7, s8 };
         for (int i = 0; i < solutions.Length; i++)
         {
-            if (solutions[i]== 3*(whoturn+1))
+            if (solutions[i] == 3 * (whoturn + 1))
             {
-                Debug.Log("Player " + (whoturn + 1) + " wins!");
-                return;
-            }
-            else if (turnCount >= 9)
-            {
-                Debug.Log("It's a draw!");
+                WinnerDisplay(i);
                 return;
             }
         }
-    }      
+    }
+    void WinnerDisplay(int indexIn)
+    {
+        winText.gameObject.SetActive(true);
+        if (whoturn == 0)
+        {
+            winText.text = "X Wins!";
+        }
+        else if (whoturn == 1)
+        {
+            winText.text = "O Wins!";
+        }
+        winLine[indexIn].SetActive(true);
+        for(int i=0; i < tictactoeSpaces.Length; i++)
+        {
+            tictactoeSpaces[i].interactable = false;
+        }
+    }
     
 }
